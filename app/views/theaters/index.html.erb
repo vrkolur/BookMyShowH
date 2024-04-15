@@ -1,0 +1,23 @@
+<h1>Theaters</h1>
+
+<table class="table table-striped table-hover">
+ <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Edit</th>
+      <th>Show</th>
+    </tr>
+ </thead>
+ <tbody>
+    <% @theaters.each do |theater| %>
+      <tr>
+        <td><%= theater.id %></td>
+        <td><%= theater.name %></td>
+        <td><%= theater.location.name %></td>
+        <td><%= link_to 'Edit', edit_theater_path(theater) %></td>
+      </tr>
+    <% end %>
+ </tbody>
+</table>
