@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_11_153737) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_15_154924) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -51,18 +51,26 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_11_153737) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "shows", force: :cascade do |t|
+  create_table "movies", force: :cascade do |t|
     t.string "name"
-    t.integer "runtime"
-    t.integer "time"
     t.text "about"
-    t.string "gener"
+    t.string "genre"
+    t.integer "runtime"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shows", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "theater_id", null: false
     t.integer "language_id", null: false
+    t.integer "movie_id", null: false
+    t.integer "time_slot_id", null: false
     t.index ["language_id"], name: "index_shows_on_language_id"
+    t.index ["movie_id"], name: "index_shows_on_movie_id"
     t.index ["theater_id"], name: "index_shows_on_theater_id"
+    t.index ["time_slot_id"], name: "index_shows_on_time_slot_id"
   end
 
   create_table "theaters", force: :cascade do |t|
@@ -73,6 +81,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_11_153737) do
     t.integer "user_id", null: false
     t.index ["location_id"], name: "index_theaters_on_location_id"
     t.index ["user_id"], name: "index_theaters_on_user_id"
+  end
+
+  create_table "time_slots", force: :cascade do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_types", force: :cascade do |t|
@@ -98,7 +113,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_11_153737) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "shows", "languages"
+  add_foreign_key "shows", "movies"
   add_foreign_key "shows", "theaters"
+  add_foreign_key "shows", "time_slots"
   add_foreign_key "theaters", "locations"
   add_foreign_key "theaters", "users"
 end

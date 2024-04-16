@@ -1,0 +1,19 @@
+.movie-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.movie-picture {
+    width: 100px;
+    height: auto;
+}
+
+.movie-info {
+    margin-left: 10px;
+}
+
+.movie-about {
+    margin-top: 10px;
+}

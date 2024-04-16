@@ -1,0 +1,16 @@
+<%= stylesheet_link_tag 'movies' %>
+<%= javascript_pack_tag 'application' %>
+<div class="movies-container">
+    <% @movies.each do |movie| %>
+    <div class="movie-card" data-movie-id="<%= movie.id %>">
+        <img src="<%= url_for(movie.picture) %>" alt="Movie Picture" class="movie-picture">
+        <div class="movie-info">
+            <h3 class="movie-name"><%= movie.name %></h3>
+            <p class="movie-genre"><%= movie.genre %></p>
+        </div>
+        <div class="movie-about" style="display: none;">
+            <p><%= movie.about %></p>
+        </div>
+    </div>
+    <% end %>
+</div>
