@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const movieCards = document.querySelectorAll('.movie-card');
-
-    movieCards.forEach(card => {
+    document.querySelectorAll('.card').forEach(card => {
         card.addEventListener('click', function () {
-            const aboutDiv = this.querySelector('.movie-about');
+            const aboutDiv = this.querySelector('.card-footer');
             aboutDiv.style.display = aboutDiv.style.display === 'none' ? 'block' : 'none';
         });
     });
